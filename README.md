@@ -1,7 +1,7 @@
 # IonicInstagramEp4
 ### Ionic 5+ Instagram Post Autoplay Video on Scroll | Episode - 4
 
-Watch the Full Episode on YouTube at 
+Watch the Full Episode on YouTube at https://youtu.be/zOVr71_ULvM
 
 Learn to build Instagram CLone App: https://www.youtube.com/playlist?list=PLixvNT19uDK7tFopqRcm8iTPKNc69VGwl
 
