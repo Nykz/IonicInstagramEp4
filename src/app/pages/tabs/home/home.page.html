@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title mode="md" color="dark">Instagram</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <ion-icon slot="icon-only" name="add-circle-outline" color="dark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" (ionScroll)="didScroll($event)">
+  <ion-grid class="ion-no-padding">
+    <ion-row *ngFor="let feed of feeds">
+      <ion-col size="12">
+        <ion-item lines="full">
+          <ion-avatar slot="start">
+            <ion-img [src]="feed?.logo"></ion-img>
+          </ion-avatar>
+          <ion-label>
+            <strong>{{feed?.username}}</strong>
+            <p>
+              <ion-text>{{feed?.location}}</ion-text>
+            </p>
+          </ion-label>
+          <ion-button slot="end" fill="clear">
+            <ion-icon slot="icon-only" name="ellipsis-horizontal" color="dark"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <div *ngIf="feed?.image" class="post" [style.background-image]="'url(' + feed?.src + ')'"></div>
+        <div *ngIf="!feed?.image" class="videoSize">
+          <video #instaVideo playsinline preload="auto">
+            <source [src]="feed?.src" type="video/mp4" />
+          </video>
+        </div>
+        <ion-item lines="none">
+          <ion-button class="iconsStart" slot="start" fill="clear">
+            <ion-icon slot="icon-only" name="heart-outline" color="dark"></ion-icon>
+          </ion-button>
+          <ion-button class="iconsStart" slot="start" fill="clear">
+            <ion-icon slot="icon-only" name="chatbubble-outline" color="dark"></ion-icon>
+          </ion-button>
+          <ion-button class="iconsStart" slot="start" fill="clear">
+            <ion-icon slot="icon-only" name="paper-plane-outline" color="dark"></ion-icon>
+          </ion-button>
+          <ion-button class="iconsStart" slot="end" fill="clear">
+            <ion-icon slot="icon-only" name="bookmark-outline" color="dark"></ion-icon>
+          </ion-button>          
+        </ion-item>
+        <ion-item lines="none" class="details">
+          <ion-label>
+            <strong *ngIf="feed?.likes > 0">{{feed?.likes}} likes</strong>
+            <p *ngIf="feed?.description && feed?.description != ''" [class]="feed?.wrap ? 'ion-text-wrap' : 'ion-text-no-wrap'">
+              <ion-text color="dark">
+                <strong>{{feed?.username}}</strong> {{feed?.description}}
+              </ion-text>
+            </p>
+            <ion-note *ngIf="feed?.description && feed?.description != ''" (click)="toggleWrap(feed)">
+              {{feed?.wrap ? 'less' : 'more'}}
+            </ion-note>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
